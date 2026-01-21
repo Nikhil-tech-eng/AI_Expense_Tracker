@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_expenses">Add Expenses</string>
+    <string name="title">Title*</string>
+    <string name="amount">Amount*</string>
+    <string name="category">Category</string>
+    <string name="save">Save</string>
+    <string name="scan_receipt">Scan Receipt</string>
+    <string name="extracting_with_ai">Extracting with AI...</string>
+    <string name="ask_ai_to_suggest_category">Ask AI to Suggest Category</string>
+    <string name="add">+ Add</string>
+    <string name="no_expenses_yet">No expenses yet</string>
+    <string name="expense_tracker">Expense Tracker</string>
+</resources>

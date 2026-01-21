@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="camera_permission_tile">Camera permission is required to scan receipts.</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="capture_receipt">Capture Receipt</string>
+</resources>
