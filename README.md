@@ -1,91 +1,205 @@
-# 🪙 AIExpenseTracker — Intelligent Expense Management
+# 🪙 AIExpenseTracker
 
-> **Transforming chaotic receipts into structured financial insights with on-device ML and Generative AI.**
+> An intelligent Android expense management application powered by Generative AI, receipt scanning, and dynamic financial analytics.
 
----
+AIExpenseTracker helps users record, categorize, and understand daily expenses through a modern Android interface. It combines Gemini AI, CameraX, ML Kit, Room Database, and Jetpack Compose to reduce manual expense tracking.
 
-### 💡 The Vision
+## ✨ Features
 
-Managing daily expenses shouldn't feel like a chore. **AIExpenseTracker** is a next-generation Android application designed to fully automate how you track your personal finances. By fusing advanced **Generative AI (Gemini API)** with robust on-device vision processing (**CameraX** & **ML Kit**), the app eliminates manual data entry, categorizes items instantly, and offers clean visual insights into your spending behavior.
+- 🤖 **AI-Powered Categorization**
+  - Uses Gemini AI to suggest appropriate expense categories.
+  - Supports category selection and natural-language expense input.
+- 🧾 **Smart Receipt Scanning**
+  - Capture receipts using the device camera.
+  - Extract expense information using OCR and ML Kit.
+- 📊 **Expense Analytics**
+  - Dynamic pie/donut chart based on actual expense categories.
+  - Category-wise spending visualization.
+  - Matching chart colors and category legend.
+- 🔎 **Search & Filtering**
+  - Search expenses by title or category.
+  - Filter transactions by category.
+  - Search and category filters work together.
+- 🗑️ **Transaction Management**
+  - Add detailed expense records.
+  - Delete individual transactions with confirmation.
+  - Automatically update expense totals and analytics.
+- 💾 **Local-First Storage**
+  - Uses Room Database for local expense storage.
+  - Existing records remain available without requiring constant internet access.
+- 🎨 **Modern Material 3 UI**
+  - Built using Jetpack Compose.
+  - Clean, responsive, professional academic-project design.
 
----
+## 🏗️ Architecture
 
-### 🚀 Core Capability Matrix
+The application follows a modular Android architecture:
 
-*   **⚡ Automated Intelligence**: Type in any transaction title, and the embedded **Gemini AI** engine automatically predicts the most accurate budget category.
-*   **👁️ Smart Receipt Processing**: Point your camera at any receipt. Using high-precision **OCR (Text Recognition)**, the app extracts the vendor, total bill amount, and date in seconds.
-*   **📊 Dynamic Visual Analytics**: Make sense of your financial habits with rich, interactive data visualizations built natively with Jetpack Compose.
-*   **🔒 Local-First Reliability**: Backed by a high-performance **Room Database**, all your data remains securely cached on your device for absolute offline-first accessibility.
-
----
-
-### 🗺️ System Architecture Blueprint
-
-This repository is built following modern multi-module architecture guidelines. This guarantees clean boundary separation, excellent testability, and fast incremental Gradle build times.
-
-```mermaid
-graph TD
-    subgraph App Shell
-        A[/:app]
-    end
-    
-    subgraph Feature Modules
-        E1[/:features:expensehome]
-        E2[/:features:camerax]
-        E3[/:features:mltoolkit]
-    end
-
-    subgraph Core Framework
-        D[/:data]
-        DS[/:design]
-        N[/:navigation]
-        T[/:test-utils]
-    end
-
-    A --> E1 & E2 & E3
-    E1 & E2 & E3 --> N & DS & D
-    D --> T
+```text
+AIExpenseTracker
+│
+├── app
+│   └── Application entry point
+│
+├── features
+│   ├── expensehome
+│   │   ├── Dashboard
+│   │   ├── Transactions
+│   │   └── Analytics
+│   │
+│   ├── camerax
+│   │   └── Receipt scanning
+│   │
+│   └── mltoolkit
+│       └── OCR / ML processing
+│
+├── data
+│   ├── Room Database
+│   ├── Entities
+│   ├── DAO
+│   ├── Repository
+│   └── Data models
+│
+├── design
+│   └── UI design system
+│
+├── navigation
+│   └── Application navigation
+│
+└── test-utils
+    └── Testing utilities
 ```
 
-*   `:app` — Application entry point, dependency injection wire-up (`Hilt`), and root activity initialization.
-*   `:features:expensehome` — Dashboard hub, transaction feed, interactive charts, and flow control.
-*   `:features:camerax` — Implements the device camera interface utilizing Jetpack CameraX components.
-*   `:features:mltoolkit` — On-device AI processing layer responsible for parsing images into readable data strings.
-*   `:data` — Single source of truth handling local SQLite/Room storage, model mappings, and network protocols.
-*   `:design` — The project design token system (colors, typography, shapes, and custom atomic components).
-*   `:navigation` — Strongly-typed navigation routes ensuring compile-time safety across multi-module hops.
+### Module Responsibilities
 
----
+| Module | Responsibility |
+|---|---|
+| `app` | Application entry point, Hilt setup and root activity |
+| `features:expensehome` | Dashboard, transactions, charts and expense workflows |
+| `features:camerax` | Camera interface and receipt capture |
+| `features:mltoolkit` | On-device OCR and image processing |
+| `data` | Room database, repositories, models and data access |
+| `design` | Colors, typography, shapes and reusable UI components |
+| `navigation` | Application navigation |
+| `test-utils` | Testing utilities |
 
-### 🛠️ Technology Stack
+## 🛠️ Technology Stack
 
-*   **Language**: 100% [Kotlin](https://kotlinlang.org/) with modern coroutines and state-driven `Flow`.
-*   **UI Toolkit**: [Jetpack Compose](https://developer.android.com/jetpack/compose) for fully declarative, Material 3-compliant layouts.
-*   **Dependency Injection**: [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for robust, compile-time safe injection graphs.
-*   **Networking & Serialization**: [Ktor Client](https://ktor.io/) paired with [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization) for fast, lightweight network handshakes.
-*   **Local Engine**: [Room Database](https://developer.android.com/target/room) implementing fully-reactive reactive streams for seamless UI state updates.
+| Technology | Purpose |
+|---|---|
+| **Kotlin** | Primary programming language |
+| **Jetpack Compose** | Declarative Android UI |
+| **Material 3** | Modern UI components |
+| **Gemini API** | Generative AI and category suggestions |
+| **CameraX** | Receipt image capture |
+| **ML Kit** | On-device text recognition |
+| **Room** | Local database |
+| **Hilt** | Dependency injection |
+| **Kotlin Coroutines** | Asynchronous operations |
+| **Kotlin Flow** | Reactive application state |
+| **Ktor Client** | Networking |
+| **Kotlinx Serialization** | Data serialization |
 
----
+## 📱 Application Flow
 
-### ⚙️ Onboarding & Environment Setup
-
-Getting a local instance up and running takes less than 5 minutes:
-
-#### 1. Requirements
-*   **Android Studio Ladybug** (or any newer version)
-*   **Android SDK 34+**
-
-#### 2. Injecting your Secret Key
-The Gemini engine requires an API key to communicate with Google's large language models safely. 
-
-1. Head over to [Google AI Studio](https://aistudio.google.com/) and grab a free API key.
-2. Open your project's root directory and locate `local.properties`.
-3. Append your key to the end of the file like so:
-
-```properties
-GEMINI_API_KEY="AIzaSyYourSecretKeyGoesRightHere..."
+```text
+User
+ │
+ ├── Add Expense
+ │      ├── Title
+ │      ├── Amount
+ │      ├── Category
+ │      ├── Date
+ │      ├── Payment Method
+ │      └── Notes
+ │
+ ├── Ask AI
+ │      └── Gemini Category Suggestion
+ │
+ └── Scan Receipt
+        └── CameraX → ML Kit OCR
+                    │
+                    ▼
+              Expense Record
+                    │
+                    ▼
+              Room Database
+                    │
+                    ▼
+               Dashboard
+              ┌─────┴─────┐
+              ▼           ▼
+        Transactions    Analytics
+              │           │
+        Search/Filter   Pie/Donut Chart
+              │           │
+              └─────┬─────┘
+                    ▼
+              Category Insights
 ```
 
-4. Hit **Sync Project with Gradle Files** in Android Studio, press **Run**, and watch the app come to life!
+## ⚙️ Setup
 
----
+### Requirements
+
+- Android Studio Ladybug or newer
+- Android SDK 34+
+- JDK compatible with the project's Gradle configuration
+- Internet connection for Gemini AI functionality
+
+### Gemini API Key
+
+The Gemini API key should remain local and must **never be committed to Git**.
+
+1. Create an API key through Google AI Studio.
+2. Open the project's `local.properties`.
+3. Add the required API-key property expected by the project's Gradle configuration.
+4. Sync the project with Gradle Files.
+5. Build and run the application.
+
+> Do not place real API keys directly inside source code or generated `BuildConfig.java` files.
+
+## 🔐 Security
+
+- Keep API keys out of source control.
+- Use `local.properties` or another local secret-management mechanism.
+- Never commit generated `BuildConfig.java` files containing secrets.
+- GitHub Push Protection should remain enabled.
+
+## 📂 Project Structure
+
+```text
+AIExpenseTracker/
+├── app/
+├── data/
+├── design/
+├── navigation/
+├── features/
+│   ├── expensehome/
+│   ├── camerax/
+│   └── mltoolkit/
+├── test-utils/
+├── gradle/
+├── build.gradle.kts
+├── settings.gradle.kts
+└── README.md
+```
+
+## 🎓 Project Context
+
+AIExpenseTracker is developed as an academic Android project demonstrating the integration of:
+
+- Modern Android development
+- Modular architecture
+- Jetpack Compose
+- Local database management
+- Generative AI
+- OCR and computer-vision-assisted workflows
+- Data visualization
+- Expense management
+
+## 📄 License
+
+This project is intended for academic and educational purposes.
+- Github: https://github.com/Nikhil-tech-eng
+- Mail ID: teckchandaninikhil@gmail.com
